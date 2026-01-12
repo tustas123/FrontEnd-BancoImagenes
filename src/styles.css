@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap'); 
+@import "tailwindcss"; 
+@import "flowbite/src/themes/default";
+
+@layer base { html, body 
+  { 
+    font-family: 'Inter', sans-serif; 
+  } 
+} 
+@layer components { 
+  .active { 
+    @apply bg-white/10 text-white font-semibold; 
+  } 
+  .toast-custom { 
+    @apply flex items-center w-full max-w-xs p-4 rounded-lg shadow bg-white text-gray-700; 
+  } 
+} 
+  
+@layer utilities {
+  .bg-gradient-to-tr-custom { 
+    background-image: linear-gradient(to top right, #4f46e5, #3b82f6); 
+  }
+ }
