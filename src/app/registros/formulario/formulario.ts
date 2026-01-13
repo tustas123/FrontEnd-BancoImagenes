@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { RegistroDTO, RegistroService } from '../../core/registro.service';
 import { UsuarioService } from '../../core/usuario.service';
+import { ToastService } from '../../shared/toast/toast.service';
 
 export interface RegistroRequest {
   numeroSolicitud: string;
@@ -27,7 +28,8 @@ export class FormularioRegistro {
   constructor(
     private readonly fb: FormBuilder,
     private readonly registroService: RegistroService,
-    private readonly usuarioService: UsuarioService
+    private readonly usuarioService: UsuarioService,
+    private readonly toastService: ToastService
   ) {
     this.form = this.fb.group({
       
@@ -68,13 +70,12 @@ export class FormularioRegistro {
 
     this.registroService.crearRegistro(dto).subscribe({
       next: (nuevo: RegistroDTO) => {
-        alert('✅ Registro creado correctamente');
+        this.toastService.success('Registro creado correctamente', 'Éxito');
         this.registroCreado.emit(nuevo);
         this.guardado.emit();
       },
       error: (err) => {
-        console.error('❌ Error al crear registro', err);
-        alert('❌ Error al crear registro');
+        this.toastService.error('Error al crear registro', 'error');
       }
     });
   }
