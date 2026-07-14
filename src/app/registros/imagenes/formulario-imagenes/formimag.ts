@@ -20,8 +20,8 @@ export class FormularioImagenes implements OnInit {
     'INE',
     'COMPROBANTE_DOMICILIO',
     'ESTADO_CUENTA',
-    'FOTONEGOCIO1',
-    'FOTONEGOCIO2',
+    'FOTO_NEGOCIO1',
+    'FOTO_NEGOCIO2',
     'SELFIE'
   ];
   documentosFijos: { tipo: string; archivo: File | null }[] = [];
@@ -30,7 +30,7 @@ export class FormularioImagenes implements OnInit {
   constructor(
     private readonly http: HttpClient,
     private readonly toastService: ToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.documentosFijos = this.tiposFijos.map(t => ({ tipo: t, archivo: null }));
@@ -146,7 +146,7 @@ export class FormularioImagenes implements OnInit {
   private esImagenNombre(nombre: string): boolean {
     const lower = nombre.toLowerCase();
     return lower.endsWith('.jpg') || lower.endsWith('.jpeg') ||
-           lower.endsWith('.png') || lower.endsWith('.gif');
+      lower.endsWith('.png') || lower.endsWith('.gif');
   }
 
   getThumbnailLocal(doc: { tipo: string; archivo: File | null }): string {
